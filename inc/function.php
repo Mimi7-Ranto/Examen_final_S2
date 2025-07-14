@@ -14,7 +14,6 @@ function registerUser($nom, $date_naissance, $genre, $email, $mdp) {
 }
 
 function loginUser($email, $mdp) {
-    
     $sql = "SELECT * FROM emprunt_membre WHERE email = '%s'AND mots_de_passe='%s'";
     $sql = sprintf($sql , $email ,  $mdp);
     $result = mysqli_query(dbconnect(), $sql);
@@ -55,20 +54,11 @@ function getObjets($categorie_id = null) {
 
     if ($categorie_id) {
         $sql = sprintf(
-            "SELECT o.*, c.nom_categorie, m.nom AS proprietaire, e.date_retour
-             FROM emprunt_objet o
-             JOIN emprunt_categorie_objet c ON o.id_categorie = c.id_categorie
-             JOIN emprunt_membre m ON o.id_membre = m.id_membre
-             LEFT JOIN emprunt_emprunt e ON o.id_objet = e.id_objet AND e.date_retour IS NULL
-             WHERE o.id_categorie = %d",
+            "SELECT * FROM v_objets_emprunts WHERE id_categorie = %d",
             $categorie_id
         );
     } else {
-        $sql = "SELECT o.*, c.nom_categorie, m.nom AS proprietaire, e.date_retour
-                FROM emprunt_objet o
-                JOIN emprunt_categorie_objet c ON o.id_categorie = c.id_categorie
-                JOIN emprunt_membre m ON o.id_membre = m.id_membre
-                LEFT JOIN emprunt_emprunt e ON o.id_objet = e.id_objet AND e.date_retour IS NULL";
+        $sql = "SELECT * FROM v_objets_emprunts ";
     }
 
     $result = mysqli_query(dbconnect(), $sql);
