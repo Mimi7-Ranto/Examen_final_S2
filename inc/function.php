@@ -6,9 +6,7 @@ function registerUser($nom, $date_naissance, $genre, $email, $mdp) {
          VALUES ('%s', '%s', '%s', '%s', '%s',null)";
     $sql = sprintf($sql,$nom, $date_naissance, $genre, $email, $mdp);
     $result = mysqli_query(dbconnect(), $sql);
-    if (!$result) {
-    echo "Erreur SQL : " . mysqli_error(dbconnect());
-}
+
 
    
 }
