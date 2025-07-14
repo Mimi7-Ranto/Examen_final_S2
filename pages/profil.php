@@ -43,8 +43,7 @@ $infos = get_info($email);
         <div class="card mx-auto shadow" style="max-width: 500px;">
             <div class="card-body text-center">
                 <h2 class="card-title mb-4">Mon Profil</h2>
-        <?php var_dump($infos['img_prpfile']); ?>
-                <img src="../assets/image/<?php echo $infos['img_prpfile']; ?> " class="rounded-circle mb-3" width="120" height="120" alt="Photo de profil">
+<img src="../assets/image/<?php echo htmlspecialchars($infos['img_prpfile']); ?>" class="rounded-circle mb-3" width="120" height="120" alt="Photo de profil">
 
                 <ul class="list-group list-group-flush text-start">
                     <li class="list-group-item"><strong>Nom :</strong> <?php echo $infos['nom']; ?></li>
