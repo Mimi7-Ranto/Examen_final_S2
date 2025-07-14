@@ -7,7 +7,6 @@ function registerUser($nom, $date_naissance, $genre, $email, $mdp) {
     $sql = sprintf($sql,$nom, $date_naissance, $genre, $email, $mdp);
     $result = mysqli_query(dbconnect(), $sql);
 
-
    
 }
 
