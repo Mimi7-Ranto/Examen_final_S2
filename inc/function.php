@@ -80,6 +80,13 @@ function get_date_retour($id_objet){
     $result = mysqli_query(dbconnect(), $sql);
     return mysqli_fetch_assoc($result);
 }
+
+function insert_pdp($image , $email){
+    $sql = "UPDATE emprunt_membre 
+        SET img_prpfile = '%s' WHERE email = '%s'";
+    $sql = sprintf($sql,$image,$email );
+    $result = mysqli_query(dbconnect(), $sql);     
+}
 /*function emprunterObjet($id_objet, $id_membre) {
     
     $sql = sprintf("INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt) VALUES (%d, %d, NOW())",

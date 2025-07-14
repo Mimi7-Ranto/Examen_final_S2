@@ -113,3 +113,14 @@ INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt, date_retour) VAL
 (35, 4, '2025-07-08', NULL),
 (36, 2, '2025-07-09', NULL),
 (40, 1, '2025-07-10', NULL);
+
+UPDATE emprunt_emprunt SET date_retour = '2025-07-01' WHERE id_emprunt = 1;
+UPDATE emprunt_emprunt SET date_retour = '2025-07-05' WHERE id_emprunt = 2;
+UPDATE emprunt_emprunt SET date_retour = '2025-07-10' WHERE id_emprunt = 3;
+UPDATE emprunt_emprunt SET date_retour = '2025-07-12' WHERE id_emprunt = 4;
+UPDATE emprunt_emprunt SET date_retour = '2025-07-14' WHERE id_emprunt = 5;
+UPDATE emprunt_emprunt SET date_retour = '2025-07-18' WHERE id_emprunt = 6;
+UPDATE emprunt_emprunt SET date_retour = '2025-07-20' WHERE id_emprunt = 7;
+UPDATE emprunt_emprunt SET date_retour = '2025-07-21' WHERE id_emprunt = 8;
+UPDATE emprunt_emprunt SET date_retour = '2025-07-25' WHERE id_emprunt = 9;
+UPDATE emprunt_emprunt SET date_retour = '2025-07-30' WHERE id_emprunt = 10;

@@ -43,8 +43,8 @@ $infos = get_info($email);
         <div class="card mx-auto shadow" style="max-width: 500px;">
             <div class="card-body text-center">
                 <h2 class="card-title mb-4">Mon Profil</h2>
-
-                <img src="images/photo_profil.jpg" class="rounded-circle mb-3" width="120" height="120" alt="Photo de profil">
+        <?php var_dump($infos['img_prpfile']); ?>
+                <img src="../assets/image/<?php echo $infos['img_prpfile']; ?> " class="rounded-circle mb-3" width="120" height="120" alt="Photo de profil">
 
                 <ul class="list-group list-group-flush text-start">
                     <li class="list-group-item"><strong>Nom :</strong> <?php echo $infos['nom']; ?></li>
@@ -57,5 +57,25 @@ $infos = get_info($email);
             </div>
         </div>
     </div>
+
+    <div class="container mt-5">
+        <div class="card mx-auto shadow" style="max-width: 500px;">
+            <div class="card-body text-center">
+                <h2 class="card-title mb-4">Modifier</h2>
+
+                <form action="traitement.php" method="post" enctype="multipart/form-data">
+        <label for="fichier">Choisir un fichier :</label>
+        <br>
+        <input type="file" name="fichier" id="fichier" required>
+        <input type="submit" value="Uploader">
+    </form>
+
+               
+            </div>
+        </div>
+    </div>
+
+
+    
 </body>
 </html>

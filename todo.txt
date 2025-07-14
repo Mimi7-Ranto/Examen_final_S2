@@ -9,7 +9,11 @@ faire les test avec quelques donne  fait+
 
 
 version 1
-creation de la page login
-creation de la page inscription
-page liste des objets
-filtrer par categorie
+creation de la page inscription fait
+    function insert fait
+    trzitement fait
+creation de la page login fait
+    fonction get_info fait
+page liste des objets fait
+    function get objet fait
+filtrer par categorie fait
