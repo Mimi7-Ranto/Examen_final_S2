@@ -1,0 +1,15 @@
+creation de la base fait
+membre  fait
+categorie  fait
+objet   fait
+image  fait
+emprunt  fait
+
+faire les test avec quelques donne  fait+
+
+
+version 1
+creation de la page login
+creation de la page inscription
+page liste des objets
+filtrer par categorie
