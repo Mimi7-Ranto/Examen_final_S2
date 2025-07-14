@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Inscription - FindAFriend</title>
+    <title>Inscription - Borrow THINGS</title>
    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -44,6 +44,12 @@
             <button type="submit" class="btn btn-success w-100">Se connecter</button>
         </form>
         <p class="mt-3 text-center">Pas encore de compte ? <a href="inscription.php">S'inscrire</a></p>
+        <?php 
+        if(isset($_GET['error']) && $_GET['error'] == 1) {
+            echo '<p class="text-danger text-center">Adresse E-mail ou mot de passe invalide !</p>';
+        } ?>
+     
+
     </div>
 </div>
 

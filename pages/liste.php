@@ -1,9 +1,16 @@
 <?php
 session_start();
-require_once("functions.php");
+include("../inc/function.php");
+$email = $_SESSION['email'];
+$infos = get_info($email);
 
 $categories = getCategories();
-$categorie_id = isset($_GET['categorie']) ? (int)$_GET['categorie'] : null;
+if (isset($_GET['categorie'])) {
+    $categorie_id = (int)$_GET['categorie'];
+} else {
+    $categorie_id = null;
+}
+
 $objets = getObjets($categorie_id);
 ?>
 
@@ -32,8 +39,32 @@ $objets = getObjets($categorie_id);
         }
     </style>
 </head>
+  <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.php">Borrow THINGS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="liste.php">Liste des Objets</a>
+                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profil.php">Mon Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Se Déconnecter</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+    </header>
 <body>
-
+  
 <div class="container mt-5">
     <h1 class="mb-4 text-center">📦 Liste des objets à emprunter</h1>
 
@@ -73,18 +104,18 @@ $objets = getObjets($categorie_id);
                                 <strong>Catégorie :</strong> <?= htmlspecialchars($obj['nom_categorie']) ?><br>
                                 <strong>Propriétaire :</strong> <?= htmlspecialchars($obj['proprietaire']) ?><br>
                                 <strong>Statut :</strong>
-                                <?php if ($obj['date_retour'] === null && isEmprunte($obj['id_objet'])): ?>
+                                <?php if (isEmprunte($obj['id_objet'])): ?>
                                     <span class="status-indispo">Emprunté</span>
-                                <?php else: ?>
-                                    <span class="status-dispo">Disponible</span>
-                                <?php endif; ?>
-                            </p>
-                            <?php
-                            $images = getImagesObjet($obj['id_objet']);
-                            if (!empty($images)) {
-                                echo '<img src="uploads/' . htmlspecialchars($images[0]) . '" class="img-fluid rounded">';
-                            }
-                            ?>
+                                    
+                                    <?php $date_retour = get_date_retour($obj['id_objet']);?>
+                                    <strong>Date de retour :</strong><?php echo $date_retour['date_retour']; ?>
+                                    <?php else: ?>
+                                        <span class="status-dispo">Disponible</span>
+                                        <?php endif; ?>
+
+                                        
+                                    </p>
+                          
                         </div>
                     </div>
                 </div>

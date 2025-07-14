@@ -26,6 +26,19 @@ function loginUser($email, $mdp) {
     return false;
 }
 
+
+function get_info($email){
+       $sql = "SELECT * FROM emprunt_membre WHERE email = '%s'";
+    $sql = sprintf($sql , $email);
+    $result = mysqli_query(dbconnect(), $sql);
+    if ($row = mysqli_fetch_assoc($result)) {
+        return $row;
+    }
+    return false;
+}
+
+
+
 function getCategories() {
     
     $sql = "SELECT * FROM emprunt_categorie_objet";
@@ -37,7 +50,6 @@ function getCategories() {
     return $categories;
 }
 
-// Récupérer les objets (filtrage par catégorie facultatif)
 function getObjets($categorie_id = null) {
     
 
@@ -67,16 +79,21 @@ function getObjets($categorie_id = null) {
     return $objets;
 }
 
-// Vérifie si un objet est emprunté
 function isEmprunte($id_objet) {
+    $sql =   "SELECT * FROM emprunt_emprunt WHERE id_objet = %d AND (date_retour IS NULL OR date_retour > NOW()) LIMIT 1";
+    $sql = sprintf($sql, $id_objet);
     
-    $sql = sprintf("SELECT * FROM emprunt_emprunt WHERE id_objet = %d AND date_retour IS NULL", $id_objet);
     $result = mysqli_query(dbconnect(), $sql);
     return mysqli_fetch_assoc($result);
 }
 
-// Emprunter un objet
-function emprunterObjet($id_objet, $id_membre) {
+function get_date_retour($id_objet){
+    $sql =     $sql ="SELECT date_retour FROM emprunt_emprunt WHERE id_objet = %d ORDER BY date_emprunt DESC LIMIT 1";
+    $sql = sprintf($sql , $id_objet);
+    $result = mysqli_query(dbconnect(), $sql);
+    return mysqli_fetch_assoc($result);
+}
+/*function emprunterObjet($id_objet, $id_membre) {
     
     $sql = sprintf("INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt) VALUES (%d, %d, NOW())",
         $id_objet, $id_membre
@@ -84,14 +101,13 @@ function emprunterObjet($id_objet, $id_membre) {
     return mysqli_query(dbconnect(), $sql);
 }
 
-// Retourner un objet
 function retournerObjet($id_objet) {
     
     $sql = sprintf("UPDATE emprunt_emprunt SET date_retour = NOW() WHERE id_objet = %d AND date_retour IS NULL", $id_objet);
     return mysqli_query(dbconnect(), $sql);
 }
 
-// Récupérer les images d’un objet
+
 function getImagesObjet($id_objet) {
     
     $sql = sprintf("SELECT nom_image FROM emprunt_image WHERE id_objet = %d", $id_objet);
@@ -101,5 +117,7 @@ function getImagesObjet($id_objet) {
         $images[] = $row['nom_image'];
     }
     return $images;
-}
+}*/
+
+
 ?>

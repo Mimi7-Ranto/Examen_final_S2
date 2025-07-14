@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Inscription - FindAFriend</title>
+    <title>Inscription - Borrow THINGS</title>
    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <style>
