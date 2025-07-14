@@ -1,21 +1,22 @@
 <?php
 require('connection.php');
 
-// Inscription d'un membre
-function registerUser($nom, $date_naissance, $genre, $email, $mdp, $image_profil) {
-    
-    $sql = sprintf(
-        "INSERT INTO emprunt_membre (nom, date_naissance, gender, email, mots_de_passe, img_prpfile)
-         VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
-        $nom, $date_naissance, $genre, $email, $mdp, $image_profil
-    );
-    return mysqli_query(dbconnect(), $sql);
+function registerUser($nom, $date_naissance, $genre, $email, $mdp) {
+    $sql = "INSERT INTO emprunt_membre (nom, date_naissance, gender, email, mots_de_passe,img_prpfile)
+         VALUES ('%s', '%s', '%s', '%s', '%s',null)";
+    $sql = sprintf($sql,$nom, $date_naissance, $genre, $email, $mdp);
+    $result = mysqli_query(dbconnect(), $sql);
+    if (!$result) {
+    echo "Erreur SQL : " . mysqli_error(dbconnect());
 }
 
-// Connexion du membre
+   
+}
+
 function loginUser($email, $mdp) {
     
-    $sql = sprintf("SELECT * FROM emprunt_membre WHERE email = '%s'", $email);
+    $sql = "SELECT * FROM emprunt_membre WHERE email = '%s'AND mots_de_passe='%s'";
+    $sql = sprintf($sql , $email ,  $mdp);
     $result = mysqli_query(dbconnect(), $sql);
     if ($row = mysqli_fetch_assoc($result)) {
         if ($mdp === $row['mots_de_passe']) {
@@ -25,7 +26,6 @@ function loginUser($email, $mdp) {
     return false;
 }
 
-// Récupérer les catégories
 function getCategories() {
     
     $sql = "SELECT * FROM emprunt_categorie_objet";
