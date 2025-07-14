@@ -68,7 +68,6 @@ $objets = getObjets($categorie_id);
 <div class="container mt-5">
     <h1 class="mb-4 text-center">📦 Liste des objets à emprunter</h1>
 
-    <!-- Filtre par catégorie -->
     <form method="GET" class="row g-3 mb-4">
         <div class="col-md-6">
             <select name="categorie" class="form-select">
@@ -83,12 +82,10 @@ $objets = getObjets($categorie_id);
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary">Filtrer</button>
         </div>
-        <div class="col-md-2">
-            <a href="liste_objets.php" class="btn btn-secondary">Réinitialiser</a>
-        </div>
+       
     </form>
 
-    <!-- Liste des objets -->
+  
     <div class="row">
         <?php if (empty($objets)): ?>
             <div class="col-12">
