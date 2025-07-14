@@ -87,6 +87,20 @@ function insert_pdp($image , $email){
     $sql = sprintf($sql,$image,$email );
     $result = mysqli_query(dbconnect(), $sql);     
 }
+
+function get_categorie(){
+    $sql = "SELECT * FROM emprunt_categorie_objet";
+    $result = mysqli_query(dbconnect(), $sql);
+    $cat = array();
+    if($result){
+        while($row = mysqli_fetch_assoc($result)){
+            $cat[] = $row;
+        }
+        return $cat;
+
+    }
+    return $cat;
+}
 /*function emprunterObjet($id_objet, $id_membre) {
     
     $sql = sprintf("INSERT INTO emprunt_emprunt (id_objet, id_membre, date_emprunt) VALUES (%d, %d, NOW())",

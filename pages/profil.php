@@ -3,6 +3,7 @@ session_start();
 include("../inc/function.php");
 $email = $_SESSION['email'];
 $infos = get_info($email);
+$categories = get_categorie();
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +67,7 @@ $infos = get_info($email);
         <label for="fichier">Choisir un fichier :</label>
         <br>
         <input type="file" name="fichier" id="fichier" required>
-        <input type="submit" value="Uploader">
+        <input type="submit" value="Uploader" class="btn btn-danger mt-4">
     </form>
 
                
@@ -74,7 +75,36 @@ $infos = get_info($email);
         </div>
     </div>
 
+<div class="container mt-5">
+  <div class="card mx-auto shadow" style="max-width: 500px;">
+    <div class="card-body text-center">
+      <h2 class="card-title mb-4">Ajouter un objet</h2>
+      <form action="traitement.php" method="post" enctype="multipart/form-data">
+        
+        <label for="obj" class="form-label">Nom de l'objet</label>
+        <input type="text" name="obj" id="obj" class="form-control" required>
 
-    
+        <label for="cat" class="form-label mt-3">Catégorie</label>
+        <select name="cat" id="cat" class="form-select" required>
+          <option value="">-- Choisir une catégorie --</option>
+          <?php foreach($categories as $categorie): ?>
+            <option value="<?php echo $categorie['id_categorie']; ?>">
+              <?php echo $categorie['nom_categorie'] ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+
+        <label for="fichier" class="form-label mt-3">Images de l'objet</label>
+        <input type="file" name="fichier" id="fichier" class="form-control" multiple accept="image/*">
+
+        <!-- Champs cachés (ajuste les valeurs si besoin) -->
+        <input type="hidden" name="id_objet" value="<?= isset($id_objet) ? $id_objet : '' ?>">
+        <input type="hidden" name="id_categorie" value="<?= isset($id_categorie) ? $id_categorie : '' ?>">
+
+        <input type="submit" value="Uploader" class="btn btn-danger mt-4">
+      </form>
+    </div>
+  </div>
+</div>
 </body>
 </html>

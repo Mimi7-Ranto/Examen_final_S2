@@ -17,3 +17,9 @@ creation de la page login fait
 page liste des objets fait
     function get objet fait
 filtrer par categorie fait
+
+ajouter une image
+    function get image object 
+    function supprimer image
+    mettre image par defaut
+    

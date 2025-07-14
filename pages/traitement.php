@@ -62,19 +62,9 @@ $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
     $newName = $originalName . '_' . uniqid() . '.' . $extension; 
     $email =  $_SESSION['email'];
     insert_pdp($newName , $email);
+header('Location:profil.php?succes=1');
 
 
-
-if (move_uploaded_file($file['tmp_name'], $uploadDir . $newName)) { 
-echo "Fichier uploadé avec succès : ". $newName; 
-    } 
-else { 
-echo "Échec du déplacement du fichier."; 
-    } 
-} else { 
-echo "Aucun fichier reçu."; 
-} 
-} 
 
 
 ?>
